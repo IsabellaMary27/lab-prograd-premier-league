@@ -72,22 +72,31 @@ function filterByAward(awardName){
 }
 
 //Progression 6 - Filter players that won ______ award ____ times
-function filterByAwardxTimes(awardName, noOfTimes){
-  let arr=[];
-  let count=0, m=0;
-  let j;
-  for(let i=0; i<players.length;i++){
-    for(j=0;J<players[1].awards.length; j++){
-      if(players[i].awards[j].name==awardName){
-        count++;
+function filterByAwardxTimes(awardName,noofTimes){
+  var player_awards = [];
+  var awardtimes =[];
+  var j;
+  var count=0;
+  for(var i=0;i < players.length;i++)
+  {
+    for(j=0;j<players[i].awards.length;j++)
+    {
+      if(players[i].awards[j].name==awardName)
+      {
+    count++;
       }
     }
-    if(count==noOfTimes){
-      arr.push(player[i]);
-    }
-    count=0
+    awardtimes[i]=count;
+    count=0;
   }
-  return arr;
+  for(var i=0;i < players.length;i++)
+  {
+      if(awardtimes[i]==noofTimes)
+      {
+         player_awards.push(players[i]);
+      }
+  }
+  return player_awards;
 }
 
 
@@ -135,6 +144,18 @@ function SortByAge() {
 }
 
 //Progression 10 - Sort players beloging to _____ team in descending order of awards won
+function filterByNoOfAwardsxTeamxAge(total,team,age)
+{
+  var a=[],j=0;
+  for(i=0;i<players.length;i++)
+  {
+    if(total<=players[i]["awards"].length&&team==players[i]["team"]&&age>players[i]["age"])
+    {
+      a.push(players[i]);
+    }
+  }
+  return a;
+}
 
 //Challenge 1 - Sort players that have won _______ award _____ times and belong to _______ country in alphabetical order of their names
 
