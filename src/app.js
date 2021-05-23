@@ -92,10 +92,47 @@ function filterByAwardxTimes(awardName, noOfTimes){
 
 
 //Progression 7 - Filter players that won ______ award and belong to ______ country
+function  filterByAwardxCountry(awardName,country){
+  var player_country = [];
+  var j;
+  for(var i=0;i < players.length;i++)
+  {
+    for(j=0;j<players[i].awards.length;j++)
+    {
+      if(players[i].awards[j].name==awardName && players[i].country==country)
+      {
+        player_country.push(players[i]);
+      }
+    }
+  }
+  return player_country;
+}
 
 //Progression 8 - Filter players that won atleast ______ awards, belong to ______ team and are younger than ____
+function filterByNoOfAwardsxTeamxAge(no,team,age){
+  var player_end= [];
+  var j;
+  for(var i=0;i < players.length;i++)
+  {
+      if((players[i].awards.length>=no) &&(players[i].team == team) && (players[i].age < age))
+      player_end.push(players[i]);
+  }
+  return player_end;
+
+}
 
 //Progression 9 - Sort players in descending order of their age
+function SortByAge() {
+  for (var j = 0; j < players.length - 1 - i; j++) {
+    var l = players[j].compareTo(players[j + 1]);
+    if (l != -1) {
+      let temp = players[j];
+      players[j] = players[j + 1];
+      players[j + 1] = temp;
+    }
+  }
+  return players;
+}
 
 //Progression 10 - Sort players beloging to _____ team in descending order of awards won
 
@@ -103,3 +140,7 @@ function filterByAwardxTimes(awardName, noOfTimes){
 
 //Challenge 2 - Sort players that are older than _____ years in alphabetical order
 //Sort the awards won by them in reverse chronological order
+function SortByNamexOlderThan(age){
+  var data = players.filter(player => player.age > age);
+  return data;
+}
